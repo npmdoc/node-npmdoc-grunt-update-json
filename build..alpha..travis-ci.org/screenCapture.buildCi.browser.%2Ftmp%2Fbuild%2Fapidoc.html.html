@@ -1,0 +1,172 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/andreaspizsa/grunt-update-json">grunt-update-json (v0.2.2)</a>
+</h1>
+<h4>Merge parts from one or more JSON files together. I use `grunt-update-json` to keep my `Bower.json` and `component.json` in sync with `package.json`.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-update-json">module grunt-update-json</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-update-json.grunt-update-json">
+            function <span class="apidocSignatureSpan"></span>grunt-update-json
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-update-json" id="apidoc.module.grunt-update-json">module grunt-update-json</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-update-json.grunt-update-json" id="apidoc.element.grunt-update-json.grunt-update-json">
+        function <span class="apidocSignatureSpan"></span>grunt-update-json
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">grunt-update-json = function (grunt) {
+  'use strict';
+
+  // Project configuration.
+  grunt.initConfig({
+    watch: {
+      default: {
+        files: [
+          "Gruntfile.js",
+          "test/*.js",
+          "test/fixture/**/*.*",
+          "tasks/**"
+        ],
+        tasks: ["default"]
+      }
+    },
+    jshint: {
+      all: [
+        'Gruntfile.js',
+        'tasks/*.js',
+        '&lt;%= mochacov.options.files.all %&gt;',
+      ],
+      options: {
+        jshintrc: '.jshintrc',
+      }
+    },
+
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: ['&lt;%= copy.tests.files.0.dest %&gt;']
+    },
+
+    // Copy the
+    copy: {
+      tests: {
+        files: [{
+          expand: true,
+          cwd: 'test/fixture/json',
+          src: ['*.dest.json'],
+          dest: '.tmp'
+        }]
+      }
+    },
+
+    // Unit tests with coverage.
+    mochacov: {
+      unit: {
+        options: {
+          reporter: 'spec'
+        }
+      },
+      coverage: {
+        options: {
+          reporter: 'mocha-term-cov-reporter',
+          coverage: true
+        }
+      },
+      options: {
+        files: 'test/*_test.js',
+        ui: 'bdd',
+        colors: true
+      }
+    }
+
+  });
+
+  // Actually load this plugin's task(s).
+  grunt.loadTasks('tasks');
+
+  // These plugins provide necessary tasks.
+  require('load-grunt-tasks')(grunt);
+
+  // Whenever the 'test' task is run, first clean the 'tmp' dir, then run this
+  // plugin's task(s), then test the result.
+  grunt.registerTask('test', ['clean', 'copy', 'mochacov']);
+
+  // By default, lint and run all tests.
+  grunt.registerTask('default', ['jshint', 'test']);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>

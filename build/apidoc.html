@@ -1,0 +1,178 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/andreaspizsa/grunt-update-json"
+
+    >grunt-update-json (v0.2.2)</a>
+</h1>
+<h4>Merge parts from one or more JSON files together. I use `grunt-update-json` to keep my `Bower.json` and `component.json` in sync with `package.json`.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-update-json">module grunt-update-json</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-update-json.grunt-update-json">
+            function <span class="apidocSignatureSpan"></span>grunt-update-json
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-update-json" id="apidoc.module.grunt-update-json">module grunt-update-json</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-update-json.grunt-update-json" id="apidoc.element.grunt-update-json.grunt-update-json">
+        function <span class="apidocSignatureSpan"></span>grunt-update-json
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">grunt-update-json = function (grunt) {
+  &#x27;use strict&#x27;;
+
+  // Project configuration.
+  grunt.initConfig({
+    watch: {
+      default: {
+        files: [
+          &#x22;Gruntfile.js&#x22;,
+          &#x22;test/*.js&#x22;,
+          &#x22;test/fixture/**/*.*&#x22;,
+          &#x22;tasks/**&#x22;
+        ],
+        tasks: [&#x22;default&#x22;]
+      }
+    },
+    jshint: {
+      all: [
+        &#x27;Gruntfile.js&#x27;,
+        &#x27;tasks/*.js&#x27;,
+        &#x27;&#x3c;%= mochacov.options.files.all %&#x3e;&#x27;,
+      ],
+      options: {
+        jshintrc: &#x27;.jshintrc&#x27;,
+      }
+    },
+
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: [&#x27;&#x3c;%= copy.tests.files.0.dest %&#x3e;&#x27;]
+    },
+
+    // Copy the
+    copy: {
+      tests: {
+        files: [{
+          expand: true,
+          cwd: &#x27;test/fixture/json&#x27;,
+          src: [&#x27;*.dest.json&#x27;],
+          dest: &#x27;.tmp&#x27;
+        }]
+      }
+    },
+
+    // Unit tests with coverage.
+    mochacov: {
+      unit: {
+        options: {
+          reporter: &#x27;spec&#x27;
+        }
+      },
+      coverage: {
+        options: {
+          reporter: &#x27;mocha-term-cov-reporter&#x27;,
+          coverage: true
+        }
+      },
+      options: {
+        files: &#x27;test/*_test.js&#x27;,
+        ui: &#x27;bdd&#x27;,
+        colors: true
+      }
+    }
+
+  });
+
+  // Actually load this plugin&#x27;s task(s).
+  grunt.loadTasks(&#x27;tasks&#x27;);
+
+  // These plugins provide necessary tasks.
+  require(&#x27;load-grunt-tasks&#x27;)(grunt);
+
+  // Whenever the &#x27;test&#x27; task is run, first clean the &#x27;tmp&#x27; dir, then run this
+  // plugin&#x27;s task(s), then test the result.
+  grunt.registerTask(&#x27;test&#x27;, [&#x27;clean&#x27;, &#x27;copy&#x27;, &#x27;mochacov&#x27;]);
+
+  // By default, lint and run all tests.
+  grunt.registerTask(&#x27;default&#x27;, [&#x27;jshint&#x27;, &#x27;test&#x27;]);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
